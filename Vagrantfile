@@ -21,6 +21,13 @@ Vagrant.configure(2) do |config|
     hub.vm.network :forwarded_port, guest: 443, host: 9002
   end
 
+  # config.vm.define "feeder" do |hub|
+  #   hub.vm.box = 'ubuntu/jammy64'
+  #   hub.vm.hostname = "hub"
+  #   hub.vm.network "private_network", ip: "192.168.56.11"
+  #   hub.vm.network :forwarded_port, guest: 443, host: 9003
+  # end
+
   config.vm.define "kali" do |kali|
     kali.vm.box = 'kalilinux/rolling'
     kali.vm.hostname = "kali"
