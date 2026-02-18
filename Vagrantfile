@@ -1,10 +1,9 @@
 Vagrant.configure(2) do |config|
-  config.vm.provider "virtualbox" do |v|
-    v.cpus = 2
-    v.memory = 4096
-    v.gui = false
+  config.vm.provider "libvirt" do |v|
+    v.cpus = 4
+    v.memory = 8192
   end
-  config.vm.synced_folder '~/ntech/', '/ntech/'
+  # config.vm.synced_folder '~/ntech/', '/ntech/'
 
   config.vm.provision "shell" do |s|
       ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
@@ -14,12 +13,12 @@ Vagrant.configure(2) do |config|
       SHELL
     end
 
-  config.vm.define "hub" do |hub|
-    hub.vm.box = 'ubuntu/jammy64'
-    hub.vm.hostname = "hub"
-    hub.vm.network "private_network", ip: "192.168.56.10"
-    hub.vm.network :forwarded_port, guest: 443, host: 9002
-  end
+  # config.vm.define "hub" do |hub|
+  #   hub.vm.box = 'ubuntu/jammy64'
+  #   hub.vm.hostname = "hub"
+  #   hub.vm.network "private_network", ip: "192.168.56.10"
+  #   hub.vm.network :forwarded_port, guest: 443, host: 9002
+  # end
 
   # config.vm.define "feeder" do |hub|
   #   hub.vm.box = 'ubuntu/jammy64'
@@ -31,7 +30,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "kali" do |kali|
     kali.vm.box = 'kalilinux/rolling'
     kali.vm.hostname = "kali"
-    kali.vm.network "private_network", ip: "192.168.56.12"
+    kali.vm.network "private_network", ip: "192.168.56.212"
   end
 
 end
