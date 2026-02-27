@@ -1,0 +1,9 @@
+--- binary-a
++++ binary-b
+@@ -1,4 +1,4 @@
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++mov    ADDR(%rip),%eax        # ADDR <yyleng>
+ ret
+-nopl   ADDR(%rax,%rax,1)
++nopw   ADDR(%rax,%rax,1)
+ 

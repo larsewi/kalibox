@@ -1,0 +1,21 @@
+--- binary-a
++++ binary-b
+@@ -13,7 +13,8 @@
+ pop    %rdi
+ ret
+ nopl   (%rax)
+-lea    ADDR(%rax),%rbx
++add    $ADDR,%eax
++movslq %eax,%rbx
+ lea    ADDR(,%rbx,8),%rdx
+ 
+ call   ADDR <xrealloc>
+@@ -37,7 +38,7 @@
+ pop    %rbx
+ pop    %rdi
+ ret
+-nopl   ADDR(%rax,%rax,1)
++nopl   (%rax)
+ mov    $ADDR,%ecx
+ call   ADDR <xmalloc>
+ test   %rax,%rax

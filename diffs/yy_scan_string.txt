@@ -1,0 +1,13 @@
+--- binary-a
++++ binary-b
+@@ -3,8 +3,8 @@
+ mov    %rcx,%rbx
+ call   ADDR <strlen>
+ mov    %rbx,%rcx
+-mov    %rax,%rdx
++mov    %eax,%edx
+ add    $ADDR,%rsp
+ pop    %rbx
+ jmp    ADDR <yy_scan_bytes>
+-nopl   (%rax)
++nopl   ADDR(%rax)

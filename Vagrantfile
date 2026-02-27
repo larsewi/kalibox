@@ -4,6 +4,7 @@ Vagrant.configure(2) do |config|
     v.memory = 8192
   end
   # config.vm.synced_folder '~/ntech/', '/ntech/'
+  config.ssh.forward_x11 = true
 
   config.vm.provision "shell" do |s|
       ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip

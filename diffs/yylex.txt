@@ -1,0 +1,1411 @@
+--- binary-a
++++ binary-b
+@@ -10,41 +10,40 @@
+ mov    ADDR(%rip),%eax        # ADDR <yy_init>
+ test   %eax,%eax
+ je     ADDR <yylex+ADDR>
+-movzbl ADDR(%rip),%r12d        # ADDR <yy_hold_char>
+-
+-mov    ADDR(%rip),%rdi        # ADDR <yy_c_buf_p>
++movzbl ADDR(%rip),%ebp        # ADDR <yy_hold_char>
++mov    ADDR(%rip),%r10        # ADDR <yy_c_buf_p>
+ movslq ADDR(%rip),%rdx        # ADDR <yy_start>
+-lea    ADDR(%rip),%r9        # ADDR <yytext>
+-lea    ADDR(%rip),%r11        # ADDR <yy_accept>
++lea    ADDR(%rip),%rdi        # ADDR <yytext>
++lea    ADDR(%rip),%r13        # ADDR <yy_accept>
+ lea    ADDR(%rip),%rbx        # ADDR <yy_base>
+-lea    ADDR(%rip),%r14        # ADDR <yy_ec>
+ lea    ADDR(%rip),%rsi        # ADDR <yy_chk>
+-mov    %r9,ADDR(%rsp)
+-lea    ADDR(%rip),%r9        # ADDR <yyleng>
+-lea    ADDR(%rip),%r15        # ADDR <yy_nxt>
+-mov    $ADDR,%r13d
++lea    ADDR(%rip),%r12        # ADDR <yy_nxt>
++mov    %rdi,ADDR(%rsp)
++lea    ADDR(%rip),%rdi        # ADDR <yyleng>
++mov    %r10,%r14
++mov    $ADDR,%r15d
+ mov    %rdx,%rax
+-movzwl (%r11,%rdx,2),%ecx
+-mov    %r9,ADDR(%rsp)
++movzwl ADDR(%r13,%rdx,2),%ecx
++mov    %rdi,ADDR(%rsp)
+ movzwl (%rbx,%rdx,2),%edx
+-mov    ADDR(%rip),%r9        # ADDR <.refptr.PARSER_STATE>
+-mov    %r9,ADDR(%rsp)
+-mov    %r12b,(%rdi)
++mov    ADDR(%rip),%rdi        # ADDR <.refptr.PARSER_STATE>
+ mov    %rdi,ADDR(%rsp)
+-mov    %rdi,%r10
++mov    %bpl,(%r14)
++mov    %r14,ADDR(%rsp)
+ mov    ADDR(%rip),%r9d        # ADDR <yy_last_accepting_state>
+-mov    ADDR(%rip),%rbp        # ADDR <yy_last_accepting_cpos>
+-xor    %edi,%edi
++mov    ADDR(%rip),%r11        # ADDR <yy_last_accepting_cpos>
++xor    %r10d,%r10d
+ xor    %r8d,%r8d
+-nopl   ADDR(%rax,%rax,1)
++movzbl %bpl,%edi
++nopl   ADDR(%rax)
+ test   %cx,%cx
+-movzbl (%r14,%r12,1),%ecx
++lea    ADDR(%rip),%rcx        # ADDR <yy_ec>
+ cmovne %eax,%r9d
+-cmovne %r10,%rbp
+-cmovne %r13d,%edi
+-cmovne %r13d,%r8d
++cmovne %r14,%r11
++cmovne %r15d,%r10d
++cmovne %r15d,%r8d
++movzbl (%rcx,%rdi,1),%ecx
+ jmp    ADDR <yylex+ADDR>
+-nopw   ADDR(%rax,%rax,1)
+ lea    ADDR(%rip),%rdx        # ADDR <yy_def>
+ cltq
+ movswl (%rdx,%rax,2),%eax
+@@ -55,48 +54,46 @@
+ movslq %eax,%rdx
+ movzwl (%rbx,%rdx,2),%edx
+ add    %ecx,%edx
+-movslq %edx,%r12
+-movswl (%rsi,%r12,2),%r12d
+-cmp    %r12d,%eax
++movslq %edx,%rdx
++movswl (%rsi,%rdx,2),%edi
++cmp    %edi,%eax
+ jne    ADDR <yylex+ADDR>
+-mov    %edx,%edx
+-add    $ADDR,%r10
+-movzwl (%r15,%rdx,2),%ecx
++movzwl (%r12,%rdx,2),%ecx
++add    $ADDR,%r14
+ movzwl (%rbx,%rcx,2),%edx
+ mov    %rcx,%rax
+ cmp    $ADDR,%dx
+ je     ADDR <yylex+ADDR>
+-movzbl (%r10),%r12d
+-movzwl (%r11,%rcx,2),%ecx
++movzbl (%r14),%edi
++movzwl ADDR(%r13,%rcx,2),%ecx
+ jmp    ADDR <yylex+ADDR>
+ test   %r8b,%r8b
+ jne    ADDR <yylex+ADDR>
+-test   %dil,%dil
++test   %r10b,%r10b
+ jne    ADDR <yylex+ADDR>
+-movzwl (%r11,%rcx,2),%edx
+-lea    ADDR(%rip),%rdi        # ADDR <.rdata+ADDR>
+-mov    %r10,%rbp
++movzwl ADDR(%r13,%rcx,2),%edx
++lea    ADDR(%rip),%rbp        # ADDR <.rdata+ADDR>
+ movswl %dx,%eax
+ test   %eax,%eax
+ jne    ADDR <yylex+ADDR>
+ movslq ADDR(%rip),%rax        # ADDR <yy_last_accepting_state>
+-mov    ADDR(%rip),%rbp        # ADDR <yy_last_accepting_cpos>
+-movswl (%r11,%rax,2),%eax
+-mov    ADDR(%rsp),%rcx
+-mov    ADDR(%rsp),%rdx
+-mov    %rbp,ADDR(%rip)        # ADDR <yy_c_buf_p>
+-mov    %rcx,(%rdx)
+-mov    %rbp,%rdx
+-sub    %rcx,%rdx
++mov    ADDR(%rip),%r14        # ADDR <yy_last_accepting_cpos>
++movswl ADDR(%r13,%rax,2),%eax
++mov    ADDR(%rsp),%rdi
+ mov    ADDR(%rsp),%rcx
+-mov    %rdx,(%rcx)
+-movzbl ADDR(%rbp),%edx
+-movb   $ADDR,ADDR(%rbp)
++mov    %r14,%rdx
++mov    %r14,ADDR(%rip)        # ADDR <yy_c_buf_p>
++mov    %rdi,(%rcx)
++sub    %rdi,%rdx
++mov    ADDR(%rsp),%rdi
++mov    %edx,(%rdi)
++movzbl (%r14),%edx
++movb   $ADDR,(%r14)
+ mov    %dl,ADDR(%rip)        # ADDR <yy_hold_char>
+ cmp    $ADDR,%eax
+ ja     ADDR <yylex+ADDR>
+-movslq (%rdi,%rax,4),%rax
+-add    %rdi,%rax
++movslq ADDR(%rbp,%rax,4),%rax
++add    %rbp,%rax
+ jmp    *%rax
+ mov    ADDR(%rip),%eax        # ADDR <yy_start>
+ movl   $ADDR,ADDR(%rip)        # ADDR <yy_init>
+@@ -119,89 +116,84 @@
+ mov    (%rax),%rdx
+ test   %rdx,%rdx
+ je     ADDR <yylex+ADDR>
+-mov    ADDR(%rdx),%rdi
++mov    ADDR(%rdx),%r10
+ mov    ADDR(%rdx),%ecx
+-mov    %rdi,ADDR(%rip)        # ADDR <yytext>
++mov    %r10,ADDR(%rip)        # ADDR <yytext>
+ mov    (%rax),%rax
+ mov    %ecx,ADDR(%rip)        # ADDR <yy_n_chars>
+-mov    %rdi,ADDR(%rip)        # ADDR <yy_c_buf_p>
++mov    %r10,ADDR(%rip)        # ADDR <yy_c_buf_p>
+ mov    (%rax),%rax
+ mov    %rax,ADDR(%rip)        # ADDR <yyin>
+-movzbl (%rdi),%r12d
+-mov    %r12b,ADDR(%rip)        # ADDR <yy_hold_char>
++movzbl (%r10),%ebp
++mov    %bpl,ADDR(%rip)        # ADDR <yy_hold_char>
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ movslq ADDR(%rip),%rdx        # ADDR <yy_start>
+-movzbl ADDR(%rip),%r12d        # ADDR <yy_hold_char>
+-
++movzbl ADDR(%rip),%ebp        # ADDR <yy_hold_char>
+ mov    ADDR(%rip),%r8        # ADDR <yy_c_buf_p>
+ mov    %rdx,%rax
+-movzwl (%r11,%rdx,2),%ecx
++movzwl ADDR(%r13,%rdx,2),%ecx
+ movzwl (%rbx,%rdx,2),%edx
+-mov    %r8,%rdi
++mov    %r8,%r14
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rsp),%rax
+-mov    (%rax),%rdx
++movslq (%rax),%rcx
+ mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+-add    %rdx,ADDR(%rax)
+-add    %edx,ADDR(%rax)
++add    %rcx,ADDR(%rax)
++add    %ecx,ADDR(%rax)
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rsp),%rax
+-mov    ADDR(%rax),%eax
+-test   %eax,%eax
++mov    ADDR(%rax),%r14d
++test   %r14d,%r14d
+ jle    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yyerror>
+ xor    %eax,%eax
+ jmp    ADDR <yylex+ADDR>
+-nop
++nopl   (%rax)
+ movzbl ADDR(%rip),%eax        # ADDR <yy_hold_char>
+-mov    %al,ADDR(%rbp)
++mov    %al,(%r14)
+ movslq ADDR(%rip),%rax        # ADDR <yy_last_accepting_state>
+-mov    ADDR(%rip),%rbp        # ADDR <yy_last_accepting_cpos>
+-movzwl (%r11,%rax,2),%edx
++mov    ADDR(%rip),%r14        # ADDR <yy_last_accepting_cpos>
++movzwl ADDR(%r13,%rax,2),%edx
+ jmp    ADDR <yylex+ADDR>
+-mov    %rbp,%rdi
+-mov    ADDR(%rip),%rbp        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rsp),%r12
+-mov    %r11,ADDR(%rsp)
+-mov    ADDR(%rbp),%rcx
+-mov    (%r12),%rax
+-add    %rax,ADDR(%rbp)
++mov    ADDR(%rip),%rdi        # ADDR <.refptr.PARSER_STATE>
++mov    ADDR(%rsp),%rbp
++mov    ADDR(%rdi),%rcx
++movslq ADDR(%rbp),%rax
++add    %rax,ADDR(%rdi)
+ call   ADDR <free>
+ mov    ADDR(%rsp),%rax
+ mov    (%rax),%rcx
+ mov    %rcx,ADDR(%rsp)
+ add    $ADDR,%rcx
+ call   ADDR <xstrdup>
+-mov    %rax,ADDR(%rbp)
++mov    %rax,ADDR(%rdi)
+ movzbl ADDR(%rip),%eax        # ADDR <yy_hold_char>
+-addl   $ADDR,ADDR(%rbp)
+-movl   $ADDR,ADDR(%rbp)
++addl   $ADDR,ADDR(%rdi)
++movl   $ADDR,ADDR(%rdi)
+ 
++mov    ADDR(%rsp),%rdi
+ movslq ADDR(%rip),%rdx        # ADDR <yy_start>
+-mov    ADDR(%rsp),%r11
+-mov    %al,(%rdi)
++mov    %al,(%r14)
+ mov    ADDR(%rsp),%rax
+-mov    ADDR(%rsp),%rdi
+-movq   $ADDR,(%r12)
+-
+-movzwl (%r11,%rdx,2),%ecx
+-lea    ADDR(%rax),%r8
++movl   $ADDR,ADDR(%rbp)
++movzwl ADDR(%r13,%rdx,2),%ecx
+ mov    %rax,(%rdi)
+-movzbl ADDR(%rax),%r12d
+-mov    %r8,ADDR(%rip)        # ADDR <yy_c_buf_p>
++movzbl ADDR(%rax),%ebp
++lea    ADDR(%rax),%r8
+ movb   $ADDR,ADDR(%rax)
+ mov    %rdx,%rax
+ movzwl (%rbx,%rdx,2),%edx
+-mov    %r12b,ADDR(%rip)        # ADDR <yy_hold_char>
++mov    %r8,ADDR(%rip)        # ADDR <yy_c_buf_p>
++mov    %bpl,ADDR(%rip)        # ADDR <yy_hold_char>
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ cmpl   $ADDR,ADDR(%rax)
+ jne    ADDR <yylex+ADDR>
+@@ -209,7 +201,6 @@
+ test   %edx,%edx
+ jg     ADDR <yylex+ADDR>
+ add    $ADDR,%edx
+-mov    %r11,ADDR(%rsp)
+ mov    %edx,ADDR(%rax)
+ mov    ADDR(%rsp),%rax
+ mov    (%rax),%rax
+@@ -220,7 +211,6 @@
+ mov    %rax,%rcx
+ call   ADDR <CompareVersion>
+ lea    -ADDR(%rax),%edx
+-mov    ADDR(%rsp),%r11
+ cmp    $ADDR,%edx
+ jbe    ADDR <yylex+ADDR>
+ test   %eax,%eax
+@@ -229,15 +219,13 @@
+ 
+ mov    ADDR(%rip),%r8        # ADDR <yy_c_buf_p>
+ mov    $ADDR,%edx
+-movzbl ADDR(%rip),%r12d        # ADDR <yy_hold_char>
+-
++movzbl ADDR(%rip),%ebp        # ADDR <yy_hold_char>
+ xor    %ecx,%ecx
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    %r11,ADDR(%rsp)
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ cmpl   $ADDR,ADDR(%rax)
+ jne    ADDR <yylex+ADDR>
+@@ -255,27 +243,17 @@
+ mov    %rax,%rcx
+ call   ADDR <CompareVersion>
+ cmp    $ADDR,%eax
+-mov    ADDR(%rsp),%r11
+ jbe    ADDR <yylex+ADDR>
+ cmp    $ADDR,%eax
+ je     ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+-mov    %r11,ADDR(%rsp)
+ call   ADDR <yyerror>
+-movslq ADDR(%rip),%rdx        # ADDR <yy_start>
+-mov    ADDR(%rsp),%r11
+-mov    ADDR(%rip),%r8        # ADDR <yy_c_buf_p>
+-movzbl ADDR(%rip),%r12d        # ADDR <yy_hold_char>
+-
+-mov    %rdx,%rax
+-movzwl (%r11,%rdx,2),%ecx
+-movzwl (%rbx,%rdx,2),%edx
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ movl   $ADDR,ADDR(%rip)        # ADDR <yy_start>
+ 
+-mov    (%rdi),%rdx
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ mov    ADDR(%rax),%edx
+ test   %edx,%edx
+@@ -283,61 +261,64 @@
+ sub    $ADDR,%edx
+ mov    %edx,ADDR(%rax)
+ mov    ADDR(%rip),%r8        # ADDR <yy_c_buf_p>
+-movzbl ADDR(%rip),%r12d        # ADDR <yy_hold_char>
+-
++movzbl ADDR(%rip),%ebp        # ADDR <yy_hold_char>
+ xor    %edx,%edx
+ xor    %ecx,%ecx
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rsp),%rcx
+-mov    %rbp,%rax
+-mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
+-sub    (%rcx),%rax
++mov    ADDR(%rsp),%rdi
++mov    %r14,%rax
+ mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
++mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
++sub    (%rdi),%rax
++lea    (%rdx,%rcx,8),%r8
+ sub    $ADDR,%eax
+ mov    %eax,ADDR(%rsp)
+ movzbl ADDR(%rip),%eax        # ADDR <yy_hold_char>
+-mov    %al,ADDR(%rbp)
+-lea    (%rdx,%rcx,8),%rax
+-mov    (%rax),%r10
+-mov    %rax,ADDR(%rsp)
+-mov    ADDR(%r10),%r12d
+-test   %r12d,%r12d
+-je     ADDR <yylex+ADDR>
+-movslq ADDR(%rip),%r9        # ADDR <yy_n_chars>
+-mov    ADDR(%r10),%r8
+-mov    ADDR(%rip),%r12        # ADDR <yy_c_buf_p>
+-lea    (%r8,%r9,1),%rax
+-cmp    %r12,%rax
++mov    %al,(%r14)
++mov    (%r8),%r10
++mov    ADDR(%rip),%eax        # ADDR <yy_n_chars>
++mov    ADDR(%r10),%edi
++test   %edi,%edi
++jne    ADDR <yylex+ADDR>
++mov    ADDR(%rip),%r9        # ADDR <yyin>
++mov    ADDR(%r10),%eax
++mov    %r9,(%r10)
++mov    (%r8),%r10
++mov    %eax,ADDR(%rip)        # ADDR <yy_n_chars>
++movl   $ADDR,ADDR(%r10)
++
++mov    ADDR(%r10),%r9
++movslq %eax,%r11
++mov    ADDR(%rip),%rdi        # ADDR <yy_c_buf_p>
++lea    (%r9,%r11,1),%rax
++cmp    %rdi,%rax
+ mov    %rax,ADDR(%rsp)
+ jae    ADDR <yylex+ADDR>
+ mov    ADDR(%rsp),%rax
+-lea    ADDR(%r8,%r9,1),%r9
+-cmp    %r9,%r12
++lea    ADDR(%r9,%r11,1),%r11
++cmp    %r11,%rdi
+ mov    (%rax),%rax
+ ja     ADDR <yylex+ADDR>
+-mov    ADDR(%r10),%r9d
+-test   %r9d,%r9d
++mov    ADDR(%r10),%r11d
++test   %r11d,%r11d
+ jne    ADDR <yylex+ADDR>
+-sub    %rax,%r12
+-cmp    $ADDR,%r12
++sub    %rax,%rdi
++cmp    $ADDR,%rdi
+ je     ADDR <yylex+ADDR>
+-mov    ADDR(%rsp),%rbp
+-mov    %r11,ADDR(%rsp)
+-mov    %rbp,ADDR(%rip)        # ADDR <yy_c_buf_p>
++mov    ADDR(%rsp),%r14
++mov    %r14,ADDR(%rip)        # ADDR <yy_c_buf_p>
+ call   ADDR <yy_get_previous_state>
+-mov    ADDR(%rsp),%rcx
+-mov    ADDR(%rsp),%r11
++mov    ADDR(%rsp),%rdi
+ cltq
+-mov    (%rcx),%rcx
+-movzwl (%r11,%rax,2),%edx
+-mov    %rcx,ADDR(%rsp)
++movzwl ADDR(%r13,%rax,2),%edx
++mov    (%rdi),%rdi
++mov    %rdi,ADDR(%rsp)
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rsp),%rax
+ mov    ADDR(%rip),%r9        # ADDR <yyout>
+ mov    $ADDR,%r8d
+-mov    %r11,ADDR(%rsp)
+-mov    (%rax),%rdx
++movslq (%rax),%rdx
+ mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ add    %rdx,ADDR(%rax)
+ mov    ADDR(%rsp),%rax
+@@ -345,7 +326,7 @@
+ call   ADDR <fwrite>
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++movslq ADDR(%rip),%rax        # ADDR <yyleng>
+ mov    ADDR(%rbx),%rcx
+ add    %rax,ADDR(%rbx)
+ test   %rcx,%rcx
+@@ -373,7 +354,7 @@
+ pop    %r15
+ ret
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++movslq ADDR(%rip),%rax        # ADDR <yyleng>
+ mov    ADDR(%rbx),%rcx
+ add    %rax,ADDR(%rbx)
+ test   %rcx,%rcx
+@@ -392,7 +373,7 @@
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++movslq ADDR(%rip),%rax        # ADDR <yyleng>
+ mov    ADDR(%rbx),%rcx
+ add    %rax,ADDR(%rbx)
+ test   %rcx,%rcx
+@@ -411,14 +392,15 @@
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
+-mov    ADDR(%rbx),%rdx
++movslq ADDR(%rip),%rdx        # ADDR <yyleng>
++mov    ADDR(%rbx),%rcx
++mov    %rdx,%rax
+ add    %eax,ADDR(%rbx)
+-cmp    $ADDR,%rax
+-lea    (%rdx,%rax,1),%rcx
+-mov    %rdx,ADDR(%rbx)
++add    %rcx,%rdx
++cmp    $ADDR,%eax
+ mov    %rcx,ADDR(%rbx)
+-jbe    ADDR <yylex+ADDR>
++mov    %rdx,ADDR(%rbx)
++jle    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yyerror>
+ mov    ADDR(%rip),%rdx        # ADDR <yytext>
+@@ -428,38 +410,39 @@
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
+-mov    ADDR(%rbx),%rdx
++movslq ADDR(%rip),%rdx        # ADDR <yyleng>
++mov    ADDR(%rbx),%rcx
++mov    %rdx,%rax
+ add    %eax,ADDR(%rbx)
+-cmp    $ADDR,%rax
+-lea    (%rdx,%rax,1),%rcx
+-mov    %rdx,ADDR(%rbx)
++add    %rcx,%rdx
++cmp    $ADDR,%eax
+ mov    %rcx,ADDR(%rbx)
+-jbe    ADDR <yylex+ADDR>
++mov    %rdx,ADDR(%rbx)
++jle    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yyerror>
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rdx        # ADDR <yyleng>
+-add    %rdx,ADDR(%rax)
+-add    %edx,ADDR(%rax)
++movslq ADDR(%rip),%rcx        # ADDR <yyleng>
++add    %rcx,ADDR(%rax)
++add    %ecx,ADDR(%rax)
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rdx        # ADDR <yyleng>
+-add    %rdx,ADDR(%rax)
+-add    %edx,ADDR(%rax)
++movslq ADDR(%rip),%rcx        # ADDR <yyleng>
++add    %rcx,ADDR(%rax)
++add    %ecx,ADDR(%rax)
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
+-add    %rax,ADDR(%rbx)
+-add    %eax,ADDR(%rbx)
+ mov    ADDR(%rip),%rax        # ADDR <yytext>
++mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
++movslq ADDR(%rip),%rdx        # ADDR <yyleng>
+ lea    ADDR(%rax),%rcx
++add    %rdx,ADDR(%rbx)
++add    %edx,ADDR(%rbx)
+ call   ADDR <xstrdup>
+ mov    %rax,%rsi
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++movslq ADDR(%rip),%rax        # ADDR <yyleng>
+ movb   $ADDR,-ADDR(%rsi,%rax,1)
+ mov    ADDR(%rbx),%rcx
+ test   %rcx,%rcx
+@@ -481,10 +464,10 @@
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
+-add    %rax,ADDR(%rbx)
+-add    %eax,ADDR(%rbx)
+ mov    ADDR(%rip),%rax        # ADDR <context_expression_whitespace_rx>
++movslq ADDR(%rip),%rdx        # ADDR <yyleng>
++add    %rdx,ADDR(%rbx)
++add    %edx,ADDR(%rbx)
+ test   %rax,%rax
+ je     ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rdx        # ADDR <yytext>
+@@ -497,7 +480,7 @@
+ mov    ADDR(%rip),%rcx        # ADDR <yytext>
+ call   ADDR <xstrdup>
+ mov    %rax,%rsi
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++movslq ADDR(%rip),%rax        # ADDR <yyleng>
+ movb   $ADDR,-ADDR(%rsi,%rax,1)
+ mov    ADDR(%rbx),%rcx
+ test   %rcx,%rcx
+@@ -519,16 +502,17 @@
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rdx        # ADDR <yyleng>
+-mov    ADDR(%rbx),%rax
+-add    %edx,ADDR(%rbx)
+-lea    (%rax,%rdx,1),%rcx
+-mov    %rax,ADDR(%rbx)
+-mov    %rcx,ADDR(%rbx)
++movslq ADDR(%rip),%rax        # ADDR <yyleng>
++mov    ADDR(%rbx),%rdx
++mov    %rax,%rcx
++add    %ecx,ADDR(%rbx)
+ mov    ADDR(%rip),%rcx        # ADDR <yytext>
++add    %rdx,%rax
++mov    %rdx,ADDR(%rbx)
++mov    %rax,ADDR(%rbx)
+ call   ADDR <xstrdup>
+ mov    %rax,%rsi
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++movslq ADDR(%rip),%rax        # ADDR <yyleng>
+ lea    ADDR(%rbx),%rcx
+ mov    $ADDR,%r8d
+ mov    %rsi,%rdx
+@@ -551,32 +535,32 @@
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rcx        # ADDR <yyleng>
+-mov    %rbp,%rdi
+-mov    ADDR(%rbx),%rax
+-add    %ecx,ADDR(%rbx)
+-lea    (%rax,%rcx,1),%rdx
+-mov    %rax,ADDR(%rbx)
++movslq ADDR(%rip),%rdx        # ADDR <yyleng>
++mov    ADDR(%rbx),%rcx
++mov    %rdx,%rax
++add    %eax,ADDR(%rbx)
++add    %rcx,%rdx
++mov    %rcx,ADDR(%rbx)
++mov    ADDR(%rip),%rcx        # ADDR <yytext>
+ mov    %rdx,ADDR(%rbx)
+-mov    ADDR(%rip),%rdx        # ADDR <yytext>
+-movzbl (%rdx),%eax
+-test   %al,%al
++movzbl (%rcx),%edx
++test   %dl,%dl
+ jne    ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+-nop
+-add    $ADDR,%rdx
+-movzbl (%rdx),%eax
+-test   %al,%al
++nopl   (%rax)
++add    $ADDR,%rcx
++movzbl (%rcx),%edx
++test   %dl,%dl
+ je     ADDR <yylex+ADDR>
+-cmp    $ADDR,%al
++cmp    $ADDR,%dl
+ jne    ADDR <yylex+ADDR>
+ addl   $ADDR,ADDR(%rbx)
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rbx        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rax        # ADDR <yyleng>
++movslq ADDR(%rip),%rdx        # ADDR <yyleng>
+ mov    ADDR(%rbx),%rcx
+-add    %rax,ADDR(%rbx)
+-add    %eax,ADDR(%rbx)
++add    %rdx,ADDR(%rbx)
++add    %edx,ADDR(%rbx)
+ test   %rcx,%rcx
+ je     ADDR <yylex+ADDR>
+ call   ADDR <free>
+@@ -586,16 +570,15 @@
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+-mov    ADDR(%rip),%rdx        # ADDR <yyleng>
+-addl   $ADDR,ADDR(%rax)
++movslq ADDR(%rip),%rdx        # ADDR <yyleng>
+ add    %rdx,ADDR(%rax)
++addl   $ADDR,ADDR(%rax)
+ mov    ADDR(%rip),%rax        # ADDR <yytext>
+ movsbl (%rax),%eax
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    %r11,ADDR(%rsp)
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ cmpl   $ADDR,ADDR(%rax)
+ jne    ADDR <yylex+ADDR>
+@@ -613,15 +596,13 @@
+ mov    %rax,%rcx
+ call   ADDR <CompareVersion>
+ cmp    $ADDR,%eax
+-mov    ADDR(%rsp),%r11
+ je     ADDR <yylex+ADDR>
+ and    $ADDR,%eax
+ je     ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    %r11,ADDR(%rsp)
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ cmpl   $ADDR,ADDR(%rax)
+ jne    ADDR <yylex+ADDR>
+@@ -639,15 +620,13 @@
+ mov    %rax,%rcx
+ call   ADDR <CompareVersion>
+ cmp    $ADDR,%eax
+-mov    ADDR(%rsp),%r11
+ je     ADDR <yylex+ADDR>
+ cmp    $ADDR,%eax
+ ja     ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    %r11,ADDR(%rsp)
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ cmpl   $ADDR,ADDR(%rax)
+ jne    ADDR <yylex+ADDR>
+@@ -665,12 +644,10 @@
+ call   ADDR <strchr>
+ cmpb   $ADDR,ADDR(%rax)
+ lea    ADDR(%rax),%rbp
+-mov    ADDR(%rsp),%r11
+ jne    ADDR <yylex+ADDR>
+ add    $ADDR,%rbp
+ cmpb   $ADDR,ADDR(%rbp)
+ je     ADDR <yylex+ADDR>
+-mov    %r11,ADDR(%rsp)
+ call   ADDR <Version>
+ mov    %rdi,%rdx
+ mov    %rax,%rcx
+@@ -682,15 +659,14 @@
+ mov    %rax,%rcx
+ call   ADDR <CompareVersion>
+ cmp    $ADDR,%edi
+-mov    ADDR(%rsp),%r11
+ ja     ADDR <yylex+ADDR>
+ cmp    $ADDR,%eax
+ ja     ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rbp        # ADDR <.refptr.PARSER_STATE>
++nopl   (%rax)
+ mov    ADDR(%rsp),%rax
+-mov    %r11,ADDR(%rsp)
+-mov    (%rax),%rax
++mov    ADDR(%rip),%rbp        # ADDR <.refptr.PARSER_STATE>
++movslq (%rax),%rax
+ add    %rax,ADDR(%rbp)
+ cmpl   $ADDR,ADDR(%rbp)
+ jne    ADDR <yylex+ADDR>
+@@ -709,13 +685,11 @@
+ mov    %eax,ADDR(%rbp)
+ call   ADDR <KnownFeature>
+ test   %eax,%eax
+-mov    ADDR(%rsp),%r11
+ je     ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    %r11,ADDR(%rsp)
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ cmpl   $ADDR,ADDR(%rax)
+ jne    ADDR <yylex+ADDR>
+@@ -733,16 +707,14 @@
+ mov    %rax,%rcx
+ call   ADDR <CompareVersion>
+ test   %eax,%eax
+-mov    ADDR(%rsp),%r11
+ je     ADDR <yylex+ADDR>
+ sub    $ADDR,%eax
+ cmp    $ADDR,%eax
+ ja     ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+-nopl   ADDR(%rax)
+-mov    ADDR(%rip),%rdx        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rax
+-mov    (%rax),%rax
++mov    ADDR(%rip),%rdx        # ADDR <.refptr.PARSER_STATE>
++movslq (%rax),%rax
+ add    %rax,ADDR(%rdx)
+ mov    ADDR(%rdx),%eax
+ cmp    $ADDR,%eax
+@@ -754,32 +726,31 @@
+ jle    ADDR <yylex+ADDR>
+ sub    $ADDR,%ecx
+ mov    ADDR(%rip),%r8        # ADDR <yy_c_buf_p>
+-movzbl ADDR(%rip),%r12d        # ADDR <yy_hold_char>
+-
++movzbl ADDR(%rip),%ebp        # ADDR <yy_hold_char>
+ mov    %ecx,ADDR(%rdx)
+ xor    %edx,%edx
+ xor    %ecx,%ecx
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rdx        # ADDR <.refptr.PARSER_STATE>
+ xor    %eax,%eax
+-mov    ADDR(%rdx),%r13d
+-test   %r13d,%r13d
++mov    ADDR(%rdx),%ebp
++test   %ebp,%ebp
+ jle    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ mov    %eax,ADDR(%rsp)
+ call   ADDR <yyerror>
+ mov    ADDR(%rsp),%eax
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ movl   $ADDR,ADDR(%rip)        # ADDR <yy_start>
+ 
+-mov    (%rdi),%rdx
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
+ mov    ADDR(%rsp),%rdi
+-mov    (%rdi),%rdx
++mov    ADDR(%rip),%rax        # ADDR <.refptr.PARSER_STATE>
++movslq (%rdi),%rdx
+ add    %rdx,ADDR(%rax)
+ mov    ADDR(%rax),%eax
+ test   %eax,%eax
+@@ -788,7 +759,7 @@
+ call   ADDR <yyerror>
+ xor    %eax,%eax
+ jmp    ADDR <yylex+ADDR>
+-nopl   ADDR(%rax)
++nopw   ADDR(%rax,%rax,1)
+ call   ADDR <yyensure_buffer_stack>
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack_top>
+ mov    ADDR(%rip),%rax        # ADDR <yy_buffer_stack>
+@@ -809,37 +780,37 @@
+ call   *ADDR(%rip)        # ADDR <__imp___iob_func>
+ mov    %rax,ADDR(%rip)        # ADDR <yyin>
+ jmp    ADDR <yylex+ADDR>
+-lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+-call   ADDR <yy_fatal_error>
+-add    $ADDR,%rcx
++add    $ADDR,%eax
++movslq %eax,%rcx
+ call   ADDR <xmalloc>
+-mov    ADDR(%rip),%rbp        # ADDR <yytext>
++mov    ADDR(%rip),%rdi        # ADDR <yytext>
+ mov    %rax,%rsi
+-mov    %rbp,%rcx
++mov    %rdi,%rcx
+ call   ADDR <strlen>
+ test   %eax,%eax
+ je     ADDR <yylex+ADDR>
+ movslq %eax,%r8
+-lea    ADDR(%rbp),%rdx
++lea    ADDR(%rdi),%rdx
+ cmp    $ADDR,%r8
+ jle    ADDR <yylex+ADDR>
+-movzbl ADDR(%rbp),%r10d
+-movzbl ADDR(%rbp),%r9d
+-cmp    %r9b,%r10b
++movzbl (%rdi),%r11d
++movzbl ADDR(%rdi),%r9d
++cmp    %r11b,%r9b
+ je     ADDR <yylex+ADDR>
+-mov    %rsi,%r12
++mov    %rsi,%rbp
+ jmp    ADDR <yylex+ADDR>
++nopw   ADDR(%rax,%rax,1)
+ movzbl (%rdx),%eax
+ mov    %rdx,%rcx
+ lea    ADDR(%rcx),%rdx
+-mov    %al,(%r12)
+-add    $ADDR,%r12
++mov    %al,ADDR(%rbp)
++add    $ADDR,%rbp
+ mov    %rdx,%rax
+-sub    %rbp,%rax
+-cmp    %r8,%rax
+-jge    ADDR <yylex+ADDR>
++sub    %rdi,%rax
++cmp    %rax,%r8
++jle    ADDR <yylex+ADDR>
+ movzbl ADDR(%rcx),%r9d
+-cmp    %r9b,%r10b
++cmp    %r9b,%r11b
+ je     ADDR <yylex+ADDR>
+ cmp    $ADDR,%r9b
+ jne    ADDR <yylex+ADDR>
+@@ -852,24 +823,24 @@
+ lea    ADDR(%rdx),%rcx
+ movzbl ADDR(%rdx),%eax
+ jmp    ADDR <yylex+ADDR>
+-movb   $ADDR,(%r12)
++movb   $ADDR,ADDR(%rbp)
+ cmpb   $ADDR,ADDR(%rcx)
+ je     ADDR <yylex+ADDR>
+ add    $ADDR,%eax
+ test   %eax,%eax
+ jle    ADDR <yylex+ADDR>
+ movzbl ADDR(%rip),%edx        # ADDR <yy_hold_char>
+-cltq
+-mov    %dl,(%rdi)
+ mov    ADDR(%rsp),%rdi
+-mov    %rax,ADDR(%rip)        # ADDR <yyleng>
+-lea    (%rdi,%rax,1),%rdx
++movslq %eax,%rcx
++mov    %dl,(%r14)
++lea    (%rdi,%rcx,1),%rdx
+ mov    %rdi,ADDR(%rip)        # ADDR <yytext>
+-movzbl (%rdx),%ecx
++mov    %eax,ADDR(%rip)        # ADDR <yyleng>
++movzbl (%rdx),%eax
+ movb   $ADDR,(%rdx)
+-sub    %rax,ADDR(%rbx)
++sub    %rcx,ADDR(%rbx)
+ mov    %rdx,ADDR(%rip)        # ADDR <yy_c_buf_p>
+-mov    %cl,ADDR(%rip)        # ADDR <yy_hold_char>
++mov    %al,ADDR(%rip)        # ADDR <yy_hold_char>
+ mov    ADDR(%rbx),%rcx
+ test   %rcx,%rcx
+ je     ADDR <yylex+ADDR>
+@@ -881,81 +852,19 @@
+ call   ADDR <free>
+ mov    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
++lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
++call   ADDR <yy_fatal_error>
+ cmp    $ADDR,%al
+ je     ADDR <yylex+ADDR>
+ cmp    $ADDR,%al
+ jne    ADDR <yylex+ADDR>
+ lea    ADDR(%rdx),%rcx
+ jmp    ADDR <yylex+ADDR>
+-cmp    $ADDR,%rax
+-mov    $ADDR,%ecx
+-cmova  %rcx,%rax
+-xor    %r12d,%r12d
+-mov    %rax,ADDR(%rsp)
+-mov    ADDR(%r10),%eax
+-test   %eax,%eax
+-jne    ADDR <yylex+ADDR>
++mov    %rsi,%rbp
++lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
++call   ADDR <yyerror>
++movb   $ADDR,ADDR(%rbp)
+ jmp    ADDR <yylex+ADDR>
+-nop
+-cmp    $ADDR,%eax
+-je     ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
+-mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
+-mov    ADDR(%rsp),%r9
+-lea    (%rdx,%rcx,8),%r10
+-mov    (%r10),%r8
+-add    ADDR(%r8),%r9
+-mov    %al,(%r9,%r12,1)
+-add    $ADDR,%r12
+-cmp    %r12,ADDR(%rsp)
+-jbe    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rcx        # ADDR <yyin>
+-mov    %r11,ADDR(%rsp)
+-call   ADDR <getc>
+-cmp    $ADDR,%eax
+-mov    ADDR(%rsp),%r11
+-jne    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rcx        # ADDR <yyin>
+-mov    %r11,ADDR(%rsp)
+-call   ADDR <ferror>
+-test   %eax,%eax
+-jne    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
+-mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
+-mov    ADDR(%rsp),%r11
+-lea    (%rdx,%rcx,8),%r10
+-mov    %r12d,%r8d
+-mov    %r12d,ADDR(%rip)        # ADDR <yy_n_chars>
+-mov    (%r10),%r12
+-xor    %r9d,%r9d
+-test   %r8d,%r8d
+-mov    %r8d,ADDR(%r12)
+-jne    ADDR <yylex+ADDR>
+-cmpq   $ADDR,ADDR(%rsp)
+-je     ADDR <yylex+ADDR>
+-lea    (%rdx,%rcx,8),%r10
+-mov    ADDR(%rip),%r8d        # ADDR <yy_n_chars>
+-mov    $ADDR,%r9d
+-mov    (%r10),%r12
+-movl   $ADDR,ADDR(%r12)
+-
+-mov    ADDR(%rsp),%eax
+-add    %r8d,%eax
+-movslq %eax,%rdx
+-cmp    ADDR(%r12),%rdx
+-ja     ADDR <yylex+ADDR>
+-mov    ADDR(%r12),%rcx
+-movb   $ADDR,(%rcx,%rdx,1)
+-mov    %eax,ADDR(%rip)        # ADDR <yy_n_chars>
+-cmp    $ADDR,%r9d
+-mov    (%r10),%rax
+-mov    ADDR(%rsp),%rcx
+-mov    ADDR(%rax),%rax
+-movb   $ADDR,ADDR(%rax,%rdx,1)
+-mov    (%r10),%rax
+-mov    ADDR(%rax),%rax
+-mov    %rax,(%rcx)
+-jne    ADDR <yylex+ADDR>
+ mov    %rax,ADDR(%rip)        # ADDR <yy_c_buf_p>
+ mov    ADDR(%rip),%eax        # ADDR <yy_start>
+ sub    $ADDR,%eax
+@@ -965,168 +874,215 @@
+ sar    $1,%eax
+ add    $ADDR,%eax
+ jmp    ADDR <yylex+ADDR>
+-mov    %rsi,%r12
+-lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+-call   ADDR <yyerror>
+-movb   $ADDR,(%r12)
+-jmp    ADDR <yylex+ADDR>
+-mov    %r12,%r9
+-sub    %rax,%r9
+-sub    $ADDR,%r9
+-mov    %r9,ADDR(%rsp)
+-je     ADDR <yylex+ADDR>
+-xor    %r9d,%r9d
+-movzbl (%rax,%r9,1),%r10d
+-mov    %r10b,(%r8,%r9,1)
+-add    $ADDR,%r9
+-cmp    %r9,ADDR(%rsp)
+-jne    ADDR <yylex+ADDR>
+-mov    ADDR(%rsp),%rax
+-mov    (%rax),%r10
++mov    %rdi,%r11
++sub    %rax,%r11
++sub    $ADDR,%r11d
++test   %r11d,%r11d
++mov    %r11d,ADDR(%rsp)
++jle    ADDR <yylex+ADDR>
++xor    %r10d,%r10d
++movzbl (%rax,%r10,1),%r11d
++mov    %r11b,(%r9,%r10,1)
++add    $ADDR,%r10
++cmp    %r10d,ADDR(%rsp)
++jg     ADDR <yylex+ADDR>
++mov    (%r8),%r10
+ cmpl   $ADDR,ADDR(%r10)
+ jne    ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%r10),%rdx
+-mov    %rdx,%rax
+-add    %rax,%rax
+-jne    ADDR <yylex+ADDR>
+-mov    %rdx,%rax
+-shr    $ADDR,%rax
+-add    %rdx,%rax
+-mov    %rax,ADDR(%r10)
+-lea    ADDR(%rax),%rdx
++mov    ADDR(%r10),%eax
++test   %eax,%eax
++jle    ADDR <yylex+ADDR>
++add    %eax,%eax
++mov    %eax,ADDR(%r10)
++add    $ADDR,%eax
+ mov    %r10,ADDR(%rsp)
+-mov    %r11,ADDR(%rsp)
++movslq %eax,%rdx
+ call   ADDR <xrealloc>
+ mov    ADDR(%rsp),%r10
+ test   %rax,%rax
+-mov    ADDR(%rsp),%r11
+ mov    %rax,ADDR(%r10)
+ je     ADDR <yylex+ADDR>
+-movslq %r12d,%r12
++movslq %edi,%rdi
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack_top>
+-add    %rax,%r12
++add    %rax,%rdi
+ mov    ADDR(%rip),%rax        # ADDR <yy_buffer_stack>
+-mov    %r12,ADDR(%rip)        # ADDR <yy_c_buf_p>
++mov    %rdi,ADDR(%rip)        # ADDR <yy_c_buf_p>
+ mov    (%rax,%rdx,8),%r10
+-mov    ADDR(%rsp),%rax
+-not    %rax
+-add    ADDR(%r10),%rax
+-jne    ADDR <yylex+ADDR>
++mov    ADDR(%rsp),%eax
++not    %eax
++add    ADDR(%r10),%eax
++test   %eax,%eax
++jg     ADDR <yylex+ADDR>
+ mov    ADDR(%r10),%rcx
+-mov    ADDR(%r10),%edx
+-sub    %rcx,%r12
+-test   %edx,%edx
++mov    ADDR(%r10),%r9d
++sub    %rcx,%rdi
++test   %r9d,%r9d
+ jne    ADDR <yylex+ADDR>
+ movq   $ADDR,ADDR(%r10)
+ 
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yy_fatal_error>
+-nop
+-mov    %rax,ADDR(%r10)
++xchg   %ax,%ax
++lea    ADDR(%rax),%edx
++test   %eax,%eax
++cmovns %eax,%edx
++sar    $ADDR,%edx
++add    %edx,%eax
++mov    %eax,ADDR(%r10)
+ jmp    ADDR <yylex+ADDR>
+-mov    ADDR(%rip),%rax        # ADDR <yyin>
+-movslq ADDR(%r10),%r9
+-mov    %rax,(%r10)
+-mov    ADDR(%rsp),%rax
+-mov    %r9d,ADDR(%rip)        # ADDR <yy_n_chars>
+-mov    (%rax),%r10
+-movl   $ADDR,ADDR(%r10)
+-
++cmp    $ADDR,%eax
++mov    $ADDR,%edi
++movslq ADDR(%rsp),%r9
++cmovg  %edi,%eax
++xor    %edi,%edi
++cltq
++mov    %rax,ADDR(%rsp)
++mov    ADDR(%r10),%eax
++test   %eax,%eax
++jne    ADDR <yylex+ADDR>
++jmp    ADDR <yylex+ADDR>
++xchg   %ax,%ax
++cmp    $ADDR,%eax
++mov    ADDR(%rsp),%r9
++je     ADDR <yylex+ADDR>
++mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
++mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
++mov    %rdi,%r10
++add    $ADDR,%rdi
++lea    (%rdx,%rcx,8),%r11
++mov    (%r11),%r8
++add    ADDR(%r8),%r10
++cmp    ADDR(%rsp),%rdi
++mov    %al,(%r10,%r9,1)
++je     ADDR <yylex+ADDR>
++mov    ADDR(%rip),%rcx        # ADDR <yyin>
++mov    %r9,ADDR(%rsp)
++call   ADDR <getc>
++cmp    $ADDR,%eax
++jne    ADDR <yylex+ADDR>
++mov    ADDR(%rip),%rcx        # ADDR <yyin>
++call   ADDR <ferror>
++test   %eax,%eax
++jne    ADDR <yylex+ADDR>
++mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
++mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
++mov    %edi,%r8d
++lea    (%rdx,%rcx,8),%r11
++mov    (%r11),%rdi
+ jmp    ADDR <yylex+ADDR>
+ movl   $ADDR,ADDR(%rip)        # ADDR <yy_n_chars>
+ 
+ movl   $ADDR,ADDR(%r10)
+ 
+-jmp    ADDR <yylex+ADDR>
+-movb   $ADDR,(%rsi)
+-cmpb   $ADDR,ADDR(%rbp)
++mov    ADDR(%rsp),%r8d
++test   %r8d,%r8d
+ je     ADDR <yylex+ADDR>
+-mov    $ADDR,%eax
+-jmp    ADDR <yylex+ADDR>
+-mov    %r9d,ADDR(%rip)        # ADDR <yy_last_accepting_state>
+-jmp    ADDR <yylex+ADDR>
+-mov    %rbp,ADDR(%rip)        # ADDR <yy_last_accepting_cpos>
+-jmp    ADDR <yylex+ADDR>
+-cmp    $ADDR,%r9d
++lea    (%rdx,%rcx,8),%r11
++mov    ADDR(%rip),%r8d        # ADDR <yy_n_chars>
++mov    $ADDR,%r10d
++mov    (%r11),%rdi
++movl   $ADDR,ADDR(%rdi)
++mov    ADDR(%rsp),%eax
++add    %r8d,%eax
++cmp    ADDR(%rdi),%eax
++jg     ADDR <yylex+ADDR>
++mov    ADDR(%rdi),%rcx
++movslq %eax,%rdx
++mov    %eax,ADDR(%rip)        # ADDR <yy_n_chars>
++mov    ADDR(%rsp),%rdi
++movb   $ADDR,(%rcx,%rdx,1)
++mov    (%r11),%rax
++cmp    $ADDR,%r10d
++mov    ADDR(%rax),%rax
++movb   $ADDR,ADDR(%rax,%rdx,1)
++mov    (%r11),%rax
++mov    ADDR(%rax),%rax
++mov    %rax,(%rdi)
+ je     ADDR <yylex+ADDR>
+-movslq ADDR(%rsp),%r10
+-mov    %r11,ADDR(%rsp)
+-add    %rax,%r10
+-mov    %r10,ADDR(%rip)        # ADDR <yy_c_buf_p>
+-mov    %r10,ADDR(%rsp)
++cmp    $ADDR,%r10d
++je     ADDR <yylex+ADDR>
++movslq ADDR(%rsp),%r14
++add    %rax,%r14
++mov    %r14,ADDR(%rip)        # ADDR <yy_c_buf_p>
+ call   ADDR <yy_get_previous_state>
+ mov    ADDR(%rsp),%rdi
+-mov    ADDR(%rsp),%r10
+-mov    ADDR(%rsp),%r11
+ mov    (%rdi),%rdi
+ mov    %rdi,ADDR(%rsp)
+ movslq %eax,%rdx
+-movzbl (%r10),%r12d
+-movzwl (%r11,%rdx,2),%ecx
++movzbl (%r14),%ebp
++movzwl ADDR(%r13,%rdx,2),%ecx
+ movzwl (%rbx,%rdx,2),%edx
+ jmp    ADDR <yylex+ADDR>
++movb   $ADDR,(%rsi)
++cmpb   $ADDR,ADDR(%rdi)
++je     ADDR <yylex+ADDR>
++mov    $ADDR,%eax
++jmp    ADDR <yylex+ADDR>
++mov    (%r11),%rax
++add    ADDR(%rax),%rdx
++mov    %rdx,%r14
++jmp    ADDR <yylex+ADDR>
+ sar    $1,%r8d
+-mov    ADDR(%r12),%rcx
+-mov    %r9d,ADDR(%rsp)
+-lea    (%r8,%rax,1),%edx
+-mov    %r11,ADDR(%rsp)
+-movslq %edx,%rdx
++mov    ADDR(%rdi),%rcx
++mov    %r10d,ADDR(%rsp)
++add    %r8d,%eax
++movslq %eax,%rdx
+ call   ADDR <xrealloc>
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack_top>
+-mov    %rax,ADDR(%r12)
++mov    %rax,ADDR(%rdi)
+ mov    ADDR(%rip),%rax        # ADDR <yy_buffer_stack>
+-lea    (%rax,%rdx,8),%r10
+-mov    (%r10),%rax
++lea    (%rax,%rdx,8),%r11
++mov    (%r11),%rax
+ mov    ADDR(%rax),%rcx
+ test   %rcx,%rcx
+ je     ADDR <yylex+ADDR>
+ mov    ADDR(%rsp),%eax
++mov    ADDR(%rsp),%r10d
+ add    ADDR(%rip),%eax        # ADDR <yy_n_chars>
+-mov    ADDR(%rsp),%r11
+-mov    ADDR(%rsp),%r9d
+-movslq %eax,%rdx
+ jmp    ADDR <yylex+ADDR>
+-mov    (%r10),%rax
+-add    ADDR(%rax),%rdx
+-mov    %rdx,%rbp
+-jmp    ADDR <yylex+ADDR>
+-lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+-call   ADDR <yy_fatal_error>
+ mov    ADDR(%rip),%rcx        # ADDR <yyin>
+-mov    %r11,ADDR(%rsp)
+ call   ADDR <yyrestart>
+ mov    ADDR(%rip),%rax        # ADDR <yy_buffer_stack>
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack_top>
+-mov    $ADDR,%r9d
++mov    $ADDR,%r10d
+ mov    ADDR(%rip),%r8d        # ADDR <yy_n_chars>
+-mov    ADDR(%rsp),%r11
+-lea    (%rax,%rdx,8),%r10
+-mov    (%r10),%r12
++lea    (%rax,%rdx,8),%r11
++mov    (%r11),%rdi
++jmp    ADDR <yylex+ADDR>
++lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
++call   ADDR <yy_fatal_error>
++mov    %r9d,ADDR(%rip)        # ADDR <yy_last_accepting_state>
++jmp    ADDR <yylex+ADDR>
++mov    %r11,ADDR(%rip)        # ADDR <yy_last_accepting_cpos>
++jmp    ADDR <yylex+ADDR>
++mov    %edi,%r8d
++mov    (%r11),%rdi
++mov    %r8d,ADDR(%rip)        # ADDR <yy_n_chars>
++xor    %r10d,%r10d
++test   %r8d,%r8d
++mov    %r8d,ADDR(%rdi)
++jne    ADDR <yylex+ADDR>
+ jmp    ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
+-mov    ADDR(%rsp),%r9
+-lea    (%rdx,%rcx,8),%r10
+-mov    (%r10),%rax
+-add    ADDR(%rax),%r9
+-movb   $ADDR,(%r9,%r12,1)
+-add    $ADDR,%r12
++mov    %rdi,%r10
++movslq ADDR(%rsp),%rax
++lea    ADDR(%rdi),%r8d
++lea    (%rdx,%rcx,8),%r11
++mov    (%r11),%r9
++add    ADDR(%r9),%r10
++movb   $ADDR,(%r10,%rax,1)
++mov    (%r11),%rdi
+ jmp    ADDR <yylex+ADDR>
+-mov    %r11,ADDR(%rsp)
+ call   *ADDR(%rip)        # ADDR <__imp__errno>
+-mov    ADDR(%rsp),%r11
++movslq ADDR(%rsp),%rdi
+ movl   $ADDR,(%rax)
+ jmp    ADDR <yylex+ADDR>
+-cs nopw ADDR(%rax,%rax,1)
+-
+ mov    ADDR(%rip),%rcx        # ADDR <yyin>
+-mov    %r11,ADDR(%rsp)
+ call   ADDR <ferror>
+ test   %eax,%eax
+-mov    ADDR(%rsp),%r11
+ je     ADDR <yylex+ADDR>
+-mov    %r11,ADDR(%rsp)
+ call   *ADDR(%rip)        # ADDR <__imp__errno>
+ cmpl   $ADDR,(%rax)
+ jne    ADDR <yylex+ADDR>
+@@ -1134,13 +1090,11 @@
+ mov    ADDR(%rip),%rcx        # ADDR <yyin>
+ movl   $ADDR,(%rax)
+ call   ADDR <clearerr>
+-mov    ADDR(%rsp),%r11
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack_top>
+ mov    ADDR(%rip),%rax        # ADDR <yy_buffer_stack>
+-mov    ADDR(%rsp),%rcx
++mov    %rdi,%rcx
+ mov    ADDR(%rsp),%r8
+ mov    ADDR(%rip),%r9        # ADDR <yyin>
+-mov    %r11,ADDR(%rsp)
+ mov    (%rax,%rdx,8),%rax
+ mov    $ADDR,%edx
+ add    ADDR(%rax),%rcx
+@@ -1148,21 +1102,21 @@
+ test   %eax,%eax
+ mov    %eax,%r8d
+ mov    %eax,ADDR(%rip)        # ADDR <yy_n_chars>
+-mov    ADDR(%rsp),%r11
+ je     ADDR <yylex+ADDR>
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
+ mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
+-xor    %r9d,%r9d
+-lea    (%rdx,%rcx,8),%r10
+-mov    (%r10),%r12
+-mov    %eax,ADDR(%r12)
++xor    %r10d,%r10d
++lea    (%rdx,%rcx,8),%r11
++mov    (%r11),%rdi
++mov    %eax,ADDR(%rdi)
+ jmp    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yy_fatal_error>
+ mov    ADDR(%rip),%rcx        # ADDR <yy_buffer_stack_top>
+ mov    ADDR(%rip),%rdx        # ADDR <yy_buffer_stack>
+ mov    ADDR(%rip),%r8d        # ADDR <yy_n_chars>
+-lea    (%rdx,%rcx,8),%r10
++lea    (%rdx,%rcx,8),%r11
++mov    (%r11),%rdi
+ jmp    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yyerror>
+@@ -1179,25 +1133,22 @@
+ jmp    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yy_fatal_error>
+-mov    ADDR(%rsp),%rcx
+-movslq ADDR(%rsp),%rax
+-mov    %r11,ADDR(%rsp)
+-add    (%rcx),%rax
+-mov    %rax,%rbp
+-mov    %rax,ADDR(%rip)        # ADDR <yy_c_buf_p>
++mov    ADDR(%rsp),%rax
++movslq ADDR(%rsp),%r14
++add    (%rax),%r14
++mov    %r14,ADDR(%rip)        # ADDR <yy_c_buf_p>
+ call   ADDR <yy_get_previous_state>
+-mov    ADDR(%rsp),%r11
+ movslq %eax,%r9
+-movzwl (%r11,%r9,2),%edx
++movzwl ADDR(%r13,%r9,2),%edx
+ test   %dx,%dx
+ je     ADDR <yylex+ADDR>
+ mov    %eax,ADDR(%rip)        # ADDR <yy_last_accepting_state>
+-mov    %rbp,ADDR(%rip)        # ADDR <yy_last_accepting_cpos>
++mov    %r14,ADDR(%rip)        # ADDR <yy_last_accepting_cpos>
+ mov    $ADDR,%r8d
+ movzwl (%rbx,%r9,2),%ecx
+ add    %r8d,%ecx
+-movslq %ecx,%r10
+-movswl (%rsi,%r10,2),%r10d
++movslq %ecx,%rcx
++movswl (%rsi,%rcx,2),%r10d
+ cmp    %r10d,%eax
+ je     ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rax        # ADDR <yy_def>
+@@ -1208,18 +1159,16 @@
+ movzbl (%rcx,%r8,1),%r8d
+ movslq %eax,%r9
+ jmp    ADDR <yylex+ADDR>
+-mov    %ecx,%ecx
+-movzwl (%r15,%rcx,2),%eax
++movzwl (%r12,%rcx,2),%eax
+ cmp    $ADDR,%eax
+ je     ADDR <yylex+ADDR>
+-mov    ADDR(%rsp),%rcx
++mov    ADDR(%rsp),%rdi
+ test   %eax,%eax
+-mov    (%rcx),%rcx
+-mov    %rcx,ADDR(%rsp)
++mov    (%rdi),%rdi
++mov    %rdi,ADDR(%rsp)
+ je     ADDR <yylex+ADDR>
+-mov    %rbp,%r10
+-add    $ADDR,%r10
+-mov    %r10,ADDR(%rip)        # ADDR <yy_c_buf_p>
++add    $ADDR,%r14
++mov    %r14,ADDR(%rip)        # ADDR <yy_c_buf_p>
+ jmp    ADDR <yylex+ADDR>
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yyerror>
+@@ -1237,4 +1186,6 @@
+ mov    (%rax),%rax
+ mov    %rax,ADDR(%rsp)
+ jmp    ADDR <yylex+ADDR>
+-nopw   ADDR(%rax,%rax,1)
++nopl   ADDR(%rax)
++cs nopw ADDR(%rax,%rax,1)
++

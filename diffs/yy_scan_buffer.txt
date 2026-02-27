@@ -1,0 +1,38 @@
+--- binary-a
++++ binary-b
+@@ -3,10 +3,10 @@
+ push   %rbx
+ sub    $ADDR,%rsp
+ cmp    $ADDR,%rdx
+-mov    %rcx,%rsi
++mov    %rcx,%rdi
++mov    %rdx,%rsi
+ jbe    ADDR <yy_scan_buffer+ADDR>
+ cmpb   $ADDR,-ADDR(%rcx,%rdx,1)
+-lea    -ADDR(%rdx),%rdi
+ jne    ADDR <yy_scan_buffer+ADDR>
+ cmpb   $ADDR,-ADDR(%rcx,%rdx,1)
+ jne    ADDR <yy_scan_buffer+ADDR>
+@@ -15,11 +15,12 @@
+ test   %rax,%rax
+ mov    %rax,%rbx
+ je     ADDR <yy_scan_buffer+ADDR>
++sub    $ADDR,%esi
+ mov    %rdi,ADDR(%rax)
+-mov    %rsi,ADDR(%rax)
++mov    %rdi,ADDR(%rax)
++mov    %esi,ADDR(%rax)
++mov    %esi,ADDR(%rax)
+ mov    %rax,%rcx
+-mov    %rsi,ADDR(%rax)
+-mov    %edi,ADDR(%rax)
+ movl   $ADDR,ADDR(%rax)
+ movq   $ADDR,(%rax)
+ movl   $ADDR,ADDR(%rax)
+@@ -42,5 +43,5 @@
+ lea    ADDR(%rip),%rcx        # ADDR <.rdata+ADDR>
+ call   ADDR <yy_fatal_error>
+ nop
+-nopw   ADDR(%rax,%rax,1)
++nopl   ADDR(%rax,%rax,1)
+ 
